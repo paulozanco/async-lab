@@ -1,3 +1,5 @@
+package seed;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +15,7 @@ public class SeedGenerator implements Runnable {
   public void run() {
     System.out.printf("SeedGenerator: Generating seed...\n");
     try {
-      TimeUnit.SECONDS.sleep(1);
+      TimeUnit.SECONDS.sleep(5);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
