@@ -1,5 +1,6 @@
 package laboratory;
 
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -12,11 +13,11 @@ public class Main {
   public static void main(String[] args) {
     try {
       System.out.println("Start: Main");
-      Future<String> future = Main.calculateAsync();
+      Future<String> future = Main.calculateAsyncWithCancellation();
       String hello = future.get();
       System.out.println("Output = [" + hello + "]");
       System.out.println("End: Main");
-    } catch (InterruptedException | ExecutionException ex) {
+    } catch (InterruptedException | ExecutionException | CancellationException ex) {
       ex.printStackTrace();
     }
   }
@@ -38,5 +39,17 @@ public class Main {
     return completableFuture;
   }
 
+
+  public static Future<String> calculateAsyncWithCancellation() throws InterruptedException, CancellationException {
+    CompletableFuture<String> completableFuture = new CompletableFuture<>();
+
+    Executors.newCachedThreadPool().submit(() -> {
+      Thread.sleep(500);
+      completableFuture.cancel(false);
+      return null;
+    });
+
+    return completableFuture;
+  }
 
 }
