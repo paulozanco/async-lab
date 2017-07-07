@@ -9,8 +9,7 @@ public class Main_2 {
     try {
       System.out.println("Start: Main");
 
-      CompletableFuture<String> completableFuture
-          = CompletableFuture.supplyAsync(() -> "Hello")
+      CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello")
           .thenApply(s -> s + " World");
 
       String hello = completableFuture.get();
