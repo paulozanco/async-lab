@@ -26,7 +26,6 @@ public class Sketch {
       CompletableFuture future4 = CompletableFuture.runAsync(() -> System.out.println("inside runnable"), (s) -> s.run());
       System.out.println(future4.get());
 
-
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -48,6 +47,7 @@ class ExampleRunnable implements Runnable {
   @Override
   public void run() {
     System.out.println("inside runnable");
+
   }
 }
 
